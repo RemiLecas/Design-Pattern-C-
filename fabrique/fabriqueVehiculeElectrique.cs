@@ -1,9 +1,18 @@
-public class FabriqueVehiculeElectrique : Fabrique{
-    public Automobile createAutomobile(){
-        return new AutomobileElectrique();
-    }
+using System;
 
-    public Scooter createScooter(){
-        return new ScooterElectrique();
-    }
+public class FabriqueVehiculeElectricite : FabriqueVehicule
+{
+  public Automobile creeAutomobile(string modele, string
+    couleur, int puissance, double espace)
+  {
+    return new AutomobileElectrique(modele, couleur,
+      puissance, espace);
+  }
+
+  public Scooter creeScooter(string modele, string
+    couleur, int puissance)
+  {
+    return new ScooterElectrique(modele, couleur,
+      puissance);
+  }
 }
