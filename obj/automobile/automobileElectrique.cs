@@ -1,7 +1,4 @@
-public class AutomobileElectrique(){
+public class AutomobileElectrique() : Automobile{
     
 }
 
-public class AutomobileEssence(){
-    
-}

@@ -1,3 +1,3 @@
-public class AutomobileEssence(){
+public class AutomobileEssence() : Automobile{
     
 }
