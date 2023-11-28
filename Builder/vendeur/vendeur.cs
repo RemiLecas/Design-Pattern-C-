@@ -1,13 +1,18 @@
-public abstract class Vendeur
+public class Vendeur
 {
-    protected string nom;
-    protected string matricule;
+  protected ConstructeurLiasseVehicule constructeur;
 
-    public Vendeur(string nom, string matricule)
-    {
-        this.nom = nom;
-        this.matricule = matricule;
-    }
+  public Vendeur(ConstructeurLiasseVehicule constructeur)
+  {
+    this.constructeur = constructeur;
+  }
 
-    public abstract void afficheVendeur();
+  public Liasse construit(string nomClient)
+  {
+    constructeur.construitBonDeCommande(nomClient);
+    constructeur.construitDemandeImmatriculation
+      (nomClient);
+    Liasse liasse = constructeur.resultat();
+    return liasse;
+  }
 }
