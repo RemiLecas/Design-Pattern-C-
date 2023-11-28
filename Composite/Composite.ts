@@ -1,26 +1,24 @@
 abstract class Societe {
-    constructor(protected nom: string) { }
-
-
-    abstract recupererInfosParc(): string;
+    constructor(protected nom: string, protected voiture: number) { }
 
     abstract afficher(): void;
+
+    abstract voitureDansLeParc(): void;
 
 };
 
 class Filiale extends Societe {
 
-    constructor(nom: string) {
-        super(nom)
-    }
-
-    recupererInfosParc(): string {
-        return `Informations du parc de la filiale ${this.nom}`;
+    constructor(nom: string, voiture: number) {
+        super(nom, voiture)
     }
 
     afficher(): void {
-        console.log(`Filiaire : ${this.nom}`);
-        console.log(this.recupererInfosParc());
+        console.log(`Filiale : ${this.nom}`);
+    }
+
+    voitureDansLeParc(): void {
+        console.log(`Voiture dans le parc de ${this.nom}:  ${this.voiture}`);
     }
 
 };
@@ -28,20 +26,23 @@ class Filiale extends Societe {
 class SocieteMere extends Societe {
     private filiales: Societe[] = [];
 
-    constructor(nom: string) {
-        super(nom)
+    constructor(nom: string, voiture: number) {
+        super(nom, voiture)
     }
-    recupererInfosParc(): string {
-        return `Informations du parc de la société mère ${this.nom}`;
-    }
+
 
     afficher(): void {
         console.log(`Société Mère : ${this.nom}`);
-        console.log(this.recupererInfosParc());
 
         // Afficher les informations de chaque filiale
         this.filiales.forEach(filiale => {
             filiale.afficher();
+        });
+    }
+
+    voitureDansLeParc(): void {
+        this.filiales.forEach(filiale => {
+            filiale.voitureDansLeParc();
         });
     }
 
@@ -52,13 +53,14 @@ class SocieteMere extends Societe {
 }
 
 
-const filiale1 = new Filiale("Filiale 1");
-const filiale2 = new Filiale("Filiale 2");
+const filiale1 = new Filiale("Filiale 1", 15);
+const filiale2 = new Filiale("Filiale 2", 3);
 
 
-const societeMere = new SocieteMere("Société Mère");
+const societeMere = new SocieteMere("Société Mama", 500);
 
 societeMere.ajouterFiliale(filiale1);
 societeMere.ajouterFiliale(filiale2);
 
 societeMere.afficher();
+societeMere.voitureDansLeParc();
